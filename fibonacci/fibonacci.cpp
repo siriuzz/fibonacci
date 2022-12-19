@@ -14,7 +14,7 @@ Fecha de entrega: 12/12/2022
 
 #include <iostream>
 #include <string>
-#include <cstdlib>
+#include <stdlib.h>
 using namespace std;
 
 //Funcion para validar entrada de un numero
@@ -37,13 +37,21 @@ string ValidarNumero(string str)
 
 int main()
 {
-    string cantidadE;
-    int primerE = 0, segundoE = 1;
+    cout << "Bienvenido al generador de numeros de la sucesion de Fibonacci!" << endl;
 
     do
     {
+        string cantidadE; //cantidad de elementos
+        int primerE = 0, segundoE = 1; //primer y segundo numero de la secuencia de fibonacci
+
         cout << "Digite el numero de elementos: "; 
         cin >> cantidadE;
+        if (cantidadE == "0") { //si se piden 0 elementos
+            cout << "Inserte un numero mayor a 0" << endl;
+            system("PAUSE");
+            system("CLS");
+            continue;
+        }
 
         if (ValidarNumero(cantidadE) != cantidadE) { //si se inserta un tipo de dato diferente de un entero
             cout << "Tipo de dato incorrecto, solo se permiten numeros, intente de nuevo" << endl;
@@ -53,17 +61,19 @@ int main()
             continue;
         }
 
-        for (int i = 0; i <= stoi(cantidadE) - 1; i++)
+        for (int i = 0; i <= stoi(cantidadE) - 1; i++) //calcula cada numero de fibonacci pedido
         {
-            if (i < 2) {
+            if (i < 2) { //si i es menor que 2, despliega el valor de i
                 cout << i << " ";
                 continue;
             }
-            segundoE += primerE;
+            segundoE += primerE; //segundo elemento es igual al segundo mas el primero
             cout << segundoE << " ";
-            primerE = segundoE - primerE;
+            primerE = segundoE - primerE; //el primero se convierte en el segundo menos el primero
         }
-        break;
+        cout << endl;
+        system("PAUSE");
+        system("CLS");
 
     } while (true);
 }
